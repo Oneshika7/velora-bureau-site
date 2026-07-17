@@ -20,8 +20,12 @@
     <meta name="twitter:description" content="Velora turns attention into demand through sharp positioning, cinematic storytelling, and campaigns built to make people stop, feel, and act.">
     <meta name="twitter:image" content="https://api.getlayers.ai/storage/v1/object/public/public/assets/laocoon-59f84455c6/1.png">
     
+  <script src="/assets/gallery-orbit-observer.js"></script>
   <script type="module" crossorigin src="/assets/index-DMYAzoyl.js"></script>
+  <script src="/assets/gallery-orbit-input.js" defer></script>
+  <script src="/assets/home-gallery-overlay.js" defer></script>
   <link rel="stylesheet" crossorigin href="/assets/index-3AmnEz7r.css">
+  <link rel="stylesheet" href="/assets/home-sections.css">
 </head>
 <body>
 
@@ -46,17 +50,6 @@
         </div>
     </div>
 
-    <div class="sound-gate" id="sound-gate" hidden>
-        <button class="sound-gate-action" id="sound-gate-action" type="button" aria-label="Enter with sound" title="Enter with sound">
-            <svg class="sound-gate-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M4 10v4h4l5 4V6l-5 4H4Z" fill="currentColor" />
-                <path d="M16 9.5c1.5 1.4 1.5 3.6 0 5M18.5 7c2.8 2.5 2.8 7.5 0 10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-            </svg>
-            <span>Enter with sound</span>
-            <span class="sound-gate-arrow" aria-hidden="true">&rarr;</span>
-        </button>
-    </div>
-
     <!-- Custom Cursor -->
     <div class="cursor-inner"></div>
     <div class="cursor-outer"></div>
@@ -78,10 +71,10 @@
     <div class="main-header">
         <div class="brand">Velora</div>
         <nav class="header-nav" aria-label="Main Navigation">
-            <a href="#slide-2" class="nav-link" aria-label="Disciplines">Disciplines</a>
-            <a href="#slide-3" class="nav-link" aria-label="Work">Work</a>
-            <a href="#slide-4" class="nav-link" aria-label="Process">Process</a>
-            <a href="#gallery-section" class="nav-link" aria-label="Gallery">Gallery</a>
+            <a href="#disciplines-section" class="home-nav-link">Disciplines</a>
+            <a href="#work-section" class="home-nav-link">Work</a>
+            <a href="#process-section" class="home-nav-link">Process</a>
+            <a href="#gallery" class="home-nav-link" data-gallery-open>Gallery</a>
         </nav>
         <div class="header-actions">
             <a href="#footer-section" class="contact-btn" aria-label="Contact Us">CONTACT US <span class="arrow">&rarr;</span></a>
@@ -91,7 +84,7 @@
     <!-- Cinematic Container -->
     <div class="cinematic-container">
         <div class="slide" id="slide-1">
-            <h2 class="slide-title">Demand In Motion</h2>
+            <h2 class="slide-title">Demand In<br>Motion</h2>
             <div class="desc-row">
                 <p class="slide-desc col-1">We don't just launch campaigns. We engineer momentum through sharp positioning and cinematic storytelling that forces the world to pay attention.</p>
                 <p class="slide-desc col-2">From brand ecosystems to performance loops, we shape strategy and content that carries your business from first glance to absolute market dominance.</p>
@@ -109,7 +102,7 @@
         </div>
 
         <div class="slide" id="slide-4">
-            <h2 class="slide-title">Digital Momentum</h2>
+            <h2 class="slide-title">Digital<br>Momentum</h2>
             <p class="slide-desc">Ads, content ecosystems, and digital experiences aligned into one moving story. We help premium brands look sharper and convert with relentless confidence.</p>
         </div>
     </div>
@@ -136,31 +129,126 @@
     <!-- WebGL Canvas -->
     <canvas id="webgl"></canvas>
 
-    <!-- Gallery Section -->
-    <section id="gallery-section">
-        <canvas id="orbit-canvas"></canvas>
+    <section id="gallery-section" aria-label="Velora project gallery" aria-hidden="true">
+        <canvas id="orbit-canvas" aria-label="Interactive orbit gallery"></canvas>
 
-        <!-- Lightbox Overlay -->
-        <div id="lightbox">
-            <button class="lightbox-close" id="lightbox-close">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        <div id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image">
+            <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close image" title="Close image">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
-            <button class="lightbox-prev" id="lightbox-prev">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            <button class="lightbox-prev" id="lightbox-prev" type="button" aria-label="Previous image" title="Previous image">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
             </button>
-            
             <div class="lightbox-content-wrapper" id="lightbox-wrapper">
                 <div class="tilted-card" id="tilted-card">
-                    <img id="lightbox-img" src="" alt="Gallery Image">
+                    <img id="lightbox-img" src="" alt="Gallery project">
                 </div>
                 <div class="tilted-card-caption-tooltip" id="lightbox-caption">PROJECT 01</div>
             </div>
-
-            <button class="lightbox-next" id="lightbox-next">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            <button class="lightbox-next" id="lightbox-next" type="button" aria-label="Next image" title="Next image">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             </button>
         </div>
     </section>
+
+    <div id="story-spacer" aria-hidden="true"></div>
+
+    <main id="home-content">
+        <section class="home-section home-section--intro" aria-labelledby="beyond-heading">
+            <div class="home-section__inner home-intro">
+                <p class="home-eyebrow">Velora Bureau</p>
+                <h2 id="beyond-heading">The work begins after attention.</h2>
+                <p class="home-lede">We shape the systems behind a premium brand: the position it owns, the story it tells, and the demand it earns over time.</p>
+                <a class="home-command" href="#disciplines-section">Explore disciplines <span aria-hidden="true">&#8594;</span></a>
+            </div>
+        </section>
+
+        <section class="home-section" id="disciplines-section" aria-labelledby="disciplines-heading">
+            <div class="home-section__inner">
+                <div class="section-heading">
+                    <p class="home-eyebrow">01 / Disciplines</p>
+                    <h2 id="disciplines-heading">Build a brand people can recognize in motion.</h2>
+                </div>
+                <div class="discipline-list">
+                    <article class="discipline-item">
+                        <span>01</span>
+                        <h3>Brand Strategy</h3>
+                        <p>Positioning, audience insight, category direction, and a clear reason to choose you.</p>
+                    </article>
+                    <article class="discipline-item">
+                        <span>02</span>
+                        <h3>Identity Systems</h3>
+                        <p>Distinctive verbal and visual foundations that remain coherent at every touchpoint.</p>
+                    </article>
+                    <article class="discipline-item">
+                        <span>03</span>
+                        <h3>Campaign Worlds</h3>
+                        <p>Creative platforms, art direction, and content ecosystems designed to carry a point of view.</p>
+                    </article>
+                    <article class="discipline-item">
+                        <span>04</span>
+                        <h3>Demand Systems</h3>
+                        <p>Paid media, launch journeys, and performance feedback that turn interest into momentum.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-section home-section--work" id="work-section" aria-labelledby="work-heading">
+            <div class="home-section__inner">
+                <div class="section-heading section-heading--split">
+                    <div>
+                        <p class="home-eyebrow">02 / Selected Work</p>
+                        <h2 id="work-heading">Distinct worlds, built to travel.</h2>
+                    </div>
+                    <p>Each direction brings strategy, image, and distribution into one recognisable presence.</p>
+                </div>
+                <div class="work-grid">
+                    <article class="work-card work-card--wide">
+                        <img src="/assets/images/img-11.png" alt="Velora campaign direction in blue and red" loading="lazy">
+                        <div class="work-card__meta"><span>Campaign World</span><span>01</span></div>
+                    </article>
+                    <article class="work-card">
+                        <img src="/assets/images/img-17.png" alt="Velora product image with a rich red background" loading="lazy">
+                        <div class="work-card__meta"><span>Product Story</span><span>02</span></div>
+                    </article>
+                    <article class="work-card">
+                        <img src="/assets/images/img-6.png" alt="Velora editorial visual direction" loading="lazy">
+                        <div class="work-card__meta"><span>Editorial System</span><span>03</span></div>
+                    </article>
+                </div>
+                <a class="home-command home-command--dark" href="#gallery" data-gallery-open>Open the gallery <span aria-hidden="true">&#8594;</span></a>
+            </div>
+        </section>
+
+        <section class="home-section" id="process-section" aria-labelledby="process-heading">
+            <div class="home-section__inner">
+                <div class="section-heading">
+                    <p class="home-eyebrow">03 / Process</p>
+                    <h2 id="process-heading">Precision before velocity.</h2>
+                </div>
+                <ol class="process-list">
+                    <li><span>01</span><div><h3>Diagnose</h3><p>We identify the pressure points, category signals, and opportunities worth moving on.</p></div></li>
+                    <li><span>02</span><div><h3>Define</h3><p>We set the strategic position, creative point of view, and the signals the brand must own.</p></div></li>
+                    <li><span>03</span><div><h3>Build</h3><p>We create the identity, campaign assets, and rollout system with craft and commercial discipline.</p></div></li>
+                    <li><span>04</span><div><h3>Scale</h3><p>We learn from response, refine the story, and direct the next move with intent.</p></div></li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="home-section home-section--fit" id="engagement-section" aria-labelledby="fit-heading">
+            <div class="home-section__inner fit-layout">
+                <div>
+                    <p class="home-eyebrow">04 / Engagement</p>
+                    <h2 id="fit-heading">For teams with something real to move.</h2>
+                </div>
+                <div class="fit-copy">
+                    <p>Velora works with founders and marketing teams who need a sharper position, a more powerful story, or a campaign that can carry the business forward.</p>
+                    <a class="home-command" href="#footer-section">Start a conversation <span aria-hidden="true">&#8594;</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer Section -->
     <section id="footer-section">
@@ -202,68 +290,6 @@
     </button>
 
     <style>
-        .sound-gate[hidden] {
-            display: none !important;
-        }
-
-        .sound-gate {
-            position: fixed;
-            inset: 0;
-            z-index: 9998;
-            display: grid;
-            place-items: center;
-            padding: 24px;
-            background: rgba(5, 4, 3, 0.72);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 220ms ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .sound-gate.is-visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .sound-gate-action {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            min-height: 52px;
-            padding: 14px 18px;
-            border: 1px solid rgba(255, 255, 255, 0.58);
-            border-radius: 4px;
-            background: rgba(12, 12, 12, 0.86);
-            color: #fff;
-            font: inherit;
-            font-size: 12px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
-            transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
-        }
-
-        .sound-gate-action:hover,
-        .sound-gate-action:focus-visible {
-            background: rgba(255, 255, 255, 0.18);
-            border-color: rgba(255, 255, 255, 0.9);
-            outline: none;
-            transform: translateY(-2px);
-        }
-
-        .sound-gate-icon {
-            width: 20px;
-            height: 20px;
-            flex: 0 0 auto;
-        }
-
-        .sound-gate-arrow {
-            font-size: 18px;
-            line-height: 1;
-        }
-
         .music-toggle {
             position: fixed;
             right: 24px;
@@ -319,8 +345,6 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .sound-gate,
-            .sound-gate-action,
             .music-toggle {
                 transition: none;
             }
@@ -331,16 +355,12 @@
         (() => {
             const audio = document.getElementById('velora-background-audio');
             const toggle = document.getElementById('music-toggle');
-            const soundGate = document.getElementById('sound-gate');
-            const soundGateAction = document.getElementById('sound-gate-action');
-            if (!audio || !toggle || !soundGate || !soundGateAction) return;
+            if (!audio || !toggle) return;
 
             audio.volume = 0.35;
             audio.currentTime = 0;
 
             let hasStarted = false;
-            let autoplayBlocked = false;
-            let preloaderComplete = false;
 
             const updateToggle = (isPlaying) => {
                 toggle.classList.toggle('is-playing', isPlaying);
@@ -349,37 +369,15 @@
                 toggle.setAttribute('title', label);
             };
 
-            const hideSoundGate = () => {
-                soundGate.classList.remove('is-visible');
-                window.setTimeout(() => {
-                    if (!soundGate.classList.contains('is-visible')) soundGate.hidden = true;
-                }, 240);
-            };
-
-            const showSoundGate = () => {
-                if (!autoplayBlocked || hasStarted || !preloaderComplete) return;
-                soundGate.hidden = false;
-                window.requestAnimationFrame(() => {
-                    soundGate.classList.add('is-visible');
-                    soundGateAction.focus({ preventScroll: true });
-                });
-            };
-
             const playMusic = () => {
                 const playRequest = audio.play();
                 return playRequest.then(() => {
                     hasStarted = true;
-                    autoplayBlocked = false;
                     updateToggle(true);
-                    hideSoundGate();
                     interactionEvents.forEach((eventName) => document.removeEventListener(eventName, startAfterInteraction, true));
                 }).catch((error) => {
                     updateToggle(false);
-                    if (error && error.name === 'NotAllowedError') {
-                        autoplayBlocked = true;
-                        showSoundGate();
-                        console.info('[Velora audio] Autoplay requires a user gesture.');
-                    } else {
+                    if (!error || error.name !== 'NotAllowedError') {
                         console.error('[Velora audio] Playback failed.', error);
                     }
                     return false;
@@ -388,7 +386,7 @@
 
             const startAfterInteraction = (event) => {
                 const target = event.target;
-                if (target instanceof Element && target.closest('#music-toggle, #sound-gate-action')) return;
+                if (target instanceof Element && target.closest('#music-toggle')) return;
                 if (hasStarted || !audio.paused) return;
                 playMusic();
             };
@@ -405,26 +403,13 @@
                 }
             });
 
-            soundGateAction.addEventListener('click', () => {
-                playMusic();
-            });
-
             audio.addEventListener('pause', () => updateToggle(false));
             audio.addEventListener('play', () => updateToggle(true));
             audio.addEventListener('error', () => console.error('[Velora audio] The audio source could not be loaded.', audio.error));
-            window.addEventListener('start-sequence-loading', () => {
-                preloaderComplete = true;
-                showSoundGate();
-            }, { once: true });
-
-            window.setTimeout(() => {
-                preloaderComplete = true;
-                showSoundGate();
-            }, 3500);
-
             playMusic();
         })();
     </script>
+    <script src="/assets/music-continuity.js" defer></script>
 
 </body>
 </html>
