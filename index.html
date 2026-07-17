@@ -26,6 +26,7 @@
   <script src="/assets/home-gallery-overlay.js" defer></script>
   <link rel="stylesheet" crossorigin href="/assets/index-3AmnEz7r.css">
   <link rel="stylesheet" href="/assets/home-sections.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
 
@@ -154,11 +155,20 @@
     <div id="story-spacer" aria-hidden="true"></div>
 
     <main id="home-content">
+        <div class="fixed-video-bg">
+            <div class="video-3d-wrap">
+                <video class="video-3d-element" autoplay loop muted playsinline>
+                    <source src="/assets/intro-bg.mp4" type="video/mp4">
+                </video>
+                <div class="video-3d-overlay"></div>
+            </div>
+        </div>
+
         <section class="home-section home-section--intro" aria-labelledby="beyond-heading">
             <div class="home-section__inner home-intro">
                 <p class="home-eyebrow">Velora Bureau</p>
-                <h2 id="beyond-heading">The work begins after attention.</h2>
-                <p class="home-lede">We shape the systems behind a premium brand: the position it owns, the story it tells, and the demand it earns over time.</p>
+                <h2 id="beyond-heading" class="scroll-reveal-text">The work begins after attention.</h2>
+                <p class="home-lede scroll-reveal-text">We shape the systems behind a premium brand: the position it owns, the story it tells, and the demand it earns over time.</p>
                 <a class="home-command" href="#disciplines-section">Explore disciplines <span aria-hidden="true">&#8594;</span></a>
             </div>
         </section>
@@ -199,23 +209,62 @@
                 <div class="section-heading section-heading--split">
                     <div>
                         <p class="home-eyebrow">02 / Selected Work</p>
-                        <h2 id="work-heading">Distinct worlds, built to travel.</h2>
+                        <h2 id="work-heading" style="color: #f6eddb !important; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Distinct worlds, built to travel.</h2>
                     </div>
-                    <p>Each direction brings strategy, image, and distribution into one recognisable presence.</p>
+                    <p style="color: #e0d8d0 !important; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Each direction brings strategy, image, and distribution into one recognisable presence.</p>
                 </div>
-                <div class="work-grid">
-                    <article class="work-card work-card--wide">
-                        <img src="/assets/images/img-11.png" alt="Velora campaign direction in blue and red" loading="lazy">
-                        <div class="work-card__meta"><span>Campaign World</span><span>01</span></div>
-                    </article>
-                    <article class="work-card">
-                        <img src="/assets/images/img-17.png" alt="Velora product image with a rich red background" loading="lazy">
-                        <div class="work-card__meta"><span>Product Story</span><span>02</span></div>
-                    </article>
-                    <article class="work-card">
-                        <img src="/assets/images/img-6.png" alt="Velora editorial visual direction" loading="lazy">
-                        <div class="work-card__meta"><span>Editorial System</span><span>03</span></div>
-                    </article>
+                <div class="hover-reveal-container" id="hover-reveal-container">
+                    <!-- Floating Image Box (Cursor follower) -->
+                    <div class="hover-reveal-image-box" id="hover-reveal-image-box">
+                        <div class="hover-reveal-slides-wrapper" id="hover-reveal-slides-wrapper">
+                            <div class="reveal-slide"><img src="/assets/images/img-11.png" alt="Campaign World"></div>
+                            <div class="reveal-slide"><img src="/assets/images/img-17.png" alt="Product Story"></div>
+                            <div class="reveal-slide"><img src="/assets/images/img-6.png" alt="Editorial System"></div>
+                            <div class="reveal-slide"><img src="/assets/images/img-1.png" alt="Brand Identity"></div>
+                            <div class="reveal-slide"><img src="/assets/images/img-2.png" alt="Digital Experience"></div>
+                            <div class="reveal-slide"><img src="/assets/images/img-3.png" alt="Creative Assets"></div>
+                        </div>
+                    </div>
+
+                    <!-- List of Reveal Items -->
+                    <div class="hover-reveal-list">
+                        <div class="reveal-item" data-index="0">
+                            <div class="reveal-item-inner">
+                                <span class="reveal-item-text">CAMPAIGN WORLD</span>
+                                <span class="reveal-item-text reveal-item-text-clone" aria-hidden="true">CAMPAIGN WORLD</span>
+                            </div>
+                        </div>
+                        <div class="reveal-item" data-index="1">
+                            <div class="reveal-item-inner">
+                                <span class="reveal-item-text">PRODUCT STORY</span>
+                                <span class="reveal-item-text reveal-item-text-clone" aria-hidden="true">PRODUCT STORY</span>
+                            </div>
+                        </div>
+                        <div class="reveal-item" data-index="2">
+                            <div class="reveal-item-inner">
+                                <span class="reveal-item-text">EDITORIAL SYSTEM</span>
+                                <span class="reveal-item-text reveal-item-text-clone" aria-hidden="true">EDITORIAL SYSTEM</span>
+                            </div>
+                        </div>
+                        <div class="reveal-item" data-index="3">
+                            <div class="reveal-item-inner">
+                                <span class="reveal-item-text">BRAND IDENTITY</span>
+                                <span class="reveal-item-text reveal-item-text-clone" aria-hidden="true">BRAND IDENTITY</span>
+                            </div>
+                        </div>
+                        <div class="reveal-item" data-index="4">
+                            <div class="reveal-item-inner">
+                                <span class="reveal-item-text">DIGITAL EXPERIENCE</span>
+                                <span class="reveal-item-text reveal-item-text-clone" aria-hidden="true">DIGITAL EXPERIENCE</span>
+                            </div>
+                        </div>
+                        <div class="reveal-item" data-index="5">
+                            <div class="reveal-item-inner">
+                                <span class="reveal-item-text">CREATIVE ASSETS</span>
+                                <span class="reveal-item-text reveal-item-text-clone" aria-hidden="true">CREATIVE ASSETS</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <a class="home-command home-command--dark" href="#gallery" data-gallery-open>Open the gallery <span aria-hidden="true">&#8594;</span></a>
             </div>
@@ -252,6 +301,12 @@
 
     <!-- Footer Section -->
     <section id="footer-section">
+        <div class="footer-video-wrap">
+            <video class="footer-video-element" autoplay muted playsinline>
+                <source src="/assets/footer-bg.mp4" type="video/mp4">
+            </video>
+            <div class="footer-video-overlay"></div>
+        </div>
         <div class="footer-center">
             <h2 class="footer-tagline">Let us help you tell your story<br>the way it was meant</h2>
             <div class="footer-emblem">
@@ -410,6 +465,7 @@
         })();
     </script>
     <script src="/assets/music-continuity.js" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/assets/text-reveal.js" defer></script>
 </body>
 </html>
