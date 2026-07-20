@@ -523,13 +523,15 @@ body.gallery-is-open {
   will-change: transform;
   transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
   transition: transform 0.15s ease-out;
+  /* Make video super crisp and vibrant (8k feel) */
+  filter: contrast(1.15) saturate(1.3) brightness(1.1);
 }
 
 .video-3d-overlay {
   position: absolute;
   inset: 0;
-  /* Darken overlay to make text highly readable across all sections */
-  background: radial-gradient(circle at center, rgba(12, 12, 12, 0.55) 0%, rgba(5, 5, 5, 0.92) 100%);
+  /* Reduced darkening overlay so the vibrant video shines through clearly */
+  background: radial-gradient(circle at center, rgba(12, 12, 12, 0.25) 0%, rgba(5, 5, 5, 0.7) 100%);
   z-index: 2;
 }
 
