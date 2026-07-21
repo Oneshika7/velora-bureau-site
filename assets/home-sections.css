@@ -103,12 +103,18 @@ body.gallery-is-open {
 .home-section--intro {
   display: grid;
   min-height: 92svh;
-  align-items: end;
+  align-items: center; /* Vertically centers the content */
+  justify-content: center; /* Horizontally centers the content */
   background: #15110c;
 }
 
 .home-intro {
   max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers all child elements (text, buttons) perfectly */
+  text-align: center; /* Centers the actual text lines */
+  margin: 0 auto;
 }
 
 .home-eyebrow {
@@ -736,6 +742,16 @@ body.gallery-is-open {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* OVERRIDES: Position Slide 1 (Demand In Motion) vertically */
+#slide-1 {
+  left: 8vw !important; /* Restore left alignment */
+  top: 55% !important; /* A little lower than absolute center to avoid Velora header */
+  transform: translateY(-50%) !important; /* Only transform Y, keep X intact */
+  text-align: left !important;
+  display: block; /* Remove flex centering */
+  max-width: 560px !important;
 }
 
 
