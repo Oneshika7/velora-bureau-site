@@ -23,7 +23,8 @@
   <script src="/assets/gallery-orbit-observer.js"></script>
   <script type="module" crossorigin src="/assets/index-DMYAzoyl.js"></script>
   <script src="/assets/gallery-orbit-input.js" defer></script>
-  <script src="/assets/home-gallery-overlay.js" defer></script>
+  <script src="/assets/home-gallery-overlay.js"></script>
+  <script src="/assets/partner-scrollytelling.js" defer></script>
   <link rel="stylesheet" crossorigin href="/assets/index-3AmnEz7r.css">
   <link rel="stylesheet" href="/assets/home-sections.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -75,6 +76,7 @@
             <a href="#disciplines-section" class="home-nav-link">Disciplines</a>
             <a href="#work-section" class="home-nav-link">Work</a>
             <a href="#process-section" class="home-nav-link">Process</a>
+            <a href="#partners-section" class="home-nav-link">Partners</a>
             <a href="#gallery" class="home-nav-link" data-gallery-open>Gallery</a>
         </nav>
         <div class="header-actions">
@@ -285,10 +287,57 @@
             </div>
         </section>
 
+        <!-- 04 / PARTNERS SCROLLETYTELLING SECTION -->
+        <section class="home-section partners-scrollytelling-section" id="partners-section" aria-labelledby="partners-heading">
+            <div class="partners-sticky-viewport">
+                <canvas id="partner-canvas"></canvas>
+                <div class="partner-canvas-overlay"></div>
+                
+                <div class="partner-text-container">
+                    <!-- Phase 1: Sunset Island -->
+                    <div class="partner-text-card card-phase-1 pos-left active" data-start-frame="1" data-end-frame="5">
+                        <p class="home-eyebrow">04 / Partners in Motion</p>
+                        <h2 id="partners-heading" class="partner-card-title">Genesis & Vision</h2>
+                        <p class="partner-card-desc">Crafting organic brand ecosystems that command unshakeable market presence from first glance.</p>
+                        <span class="partner-phase-badge">Phase 01 — Island Horizon</span>
+                    </div>
+
+                    <!-- Phase 2: Underwater Canyon -->
+                    <div class="partner-text-card card-phase-2 pos-right" data-start-frame="6" data-end-frame="15">
+                        <p class="home-eyebrow">04 / Organic Resonance</p>
+                        <h2 class="partner-card-title">Submerged Intelligence</h2>
+                        <p class="partner-card-desc">Deep positioning rooted in authentic category signals and bioluminescent creative strategy.</p>
+                        <span class="partner-phase-badge">Phase 02 — Sea Moss Depths</span>
+                    </div>
+
+                    <!-- Phase 3: Underwater Pillars -->
+                    <div class="partner-text-card card-phase-3 pos-left" data-start-frame="16" data-end-frame="25">
+                        <p class="home-eyebrow">04 / Brand Authority</p>
+                        <h2 class="partner-card-title">Pillars of Momentum</h2>
+                        <p class="partner-card-desc">Monumental identity systems engineered to withstand market noise and drive explosive growth.</p>
+                        <span class="partner-phase-badge">Phase 03 — Monolithic Pillars</span>
+                    </div>
+
+                    <!-- Phase 4: Cloud Sunrise -->
+                    <div class="partner-text-card card-phase-4 pos-center" data-start-frame="26" data-end-frame="30">
+                        <p class="home-eyebrow">04 / Market Dominance</p>
+                        <h2 class="partner-card-title">Beyond the Horizon</h2>
+                        <p class="partner-card-desc">Elevating brand vision into radiant commercial leadership across every digital touchpoint.</p>
+                        <span class="partner-phase-badge">Phase 04 — Golden Ascent</span>
+                    </div>
+                </div>
+
+                <!-- Frame Progress Indicator -->
+                <div class="partner-frame-indicator">
+                    FRAME <span id="partner-frame-num">01</span> / 30
+                </div>
+            </div>
+        </section>
+
         <section class="home-section home-section--fit" id="engagement-section" aria-labelledby="fit-heading">
             <div class="home-section__inner fit-layout">
                 <div>
-                    <p class="home-eyebrow">04 / Engagement</p>
+                    <p class="home-eyebrow">05 / Engagement</p>
                     <h2 id="fit-heading">For teams with something real to move.</h2>
                 </div>
                 <div class="fit-copy">
