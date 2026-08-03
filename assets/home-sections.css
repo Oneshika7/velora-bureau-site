@@ -91,7 +91,7 @@ body.gallery-is-open {
 /* Header Actions - Two Buttons */
 .header-actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 12px;
   align-items: center;
 }
@@ -1279,6 +1279,201 @@ body.partners-page-body .main-header {
     font: 400 clamp(16px, 2vw, 22px)/1.2 'Italiana', serif;
     color: #fff;
     margin: 0;
+    padding: 24px;
+  }
+  .partner-text-card.pos-center {
+    transform: translateY(-50%) translateY(30px) scale(0.96);
+  }
+  .partner-text-card.pos-center.active {
+    transform: translateY(-50%) translateY(0) scale(1);
+  }
+}
+
+/* PARTNERS SEPARATE PAGE STYLES */
+body.partners-page-body {
+  background: #000;
+  color: #f4ecde;
+  overflow-x: hidden;
+}
+
+body.partners-page-body .main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
+}
+
+.active-nav-link {
+  color: #e6bf6e !important;
+  border-bottom: 1px solid #e6bf6e;
+  padding-bottom: 2px;
+}
+
+.partners-back-home-btn {
+  position: absolute;
+  bottom: 40px;
+  left: 5vw;
+  z-index: 4;
+  color: #f4ecde;
+  text-decoration: none;
+  font: 600 12px/1 Outfit, sans-serif;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  background: rgba(12, 10, 8, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(230, 191, 110, 0.3);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.partners-back-home-btn:hover {
+  background: rgba(230, 191, 110, 0.2);
+  color: #e6bf6e;
+  border-color: #e6bf6e;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   PARTNERS SECTION (FLIP GALLERY & ANIMATED TEXT)
+   ========================================================================== */
+.flip-gallery-container {
+    width: 100%;
+    height: auto;
+    min-height: 600px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    cursor: pointer;
+    gap: 40px;
+}
+
+.flip-gallery-label {
+    font: 600 14px/1 Outfit, sans-serif;
+    color: rgba(230, 191, 110, 0.8);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+}
+
+.flip-tilt-wrapper {
+    position: relative;
+    width: 900px;
+    max-width: 90vw;
+    height: 350px;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out;
+    will-change: transform;
+}
+
+.glass-brand-card {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    border-left: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(255,255,255,0.03);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+}
+
+.animated-text-container {
+    display: flex;
+    gap: 0.1em;
+    perspective: 1000px;
+    align-items: center;
+    justify-content: center;
+}
+
+.anim-letter {
+    display: inline-block;
+    font: 400 clamp(48px, 6vw, 84px)/1.2 'Italiana', serif;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform: rotateX(90deg) translateY(20px);
+    opacity: 0;
+    filter: blur(8px);
+}
+
+/* ==========================================
+   INFINITE MARQUEE SECTION
+   ========================================== */
+.marquee-container {
+    width: 100vw;
+    max-width: 100%;
+    margin-top: 40px;
+    overflow: hidden;
+    /* Cinematic Fade */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    padding: 20px 0;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: scroll-marquee 20s linear infinite;
+    will-change: transform;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.marquee-card {
+    /* Even smaller size as requested */
+    width: 200px; 
+    height: 110px;
+    flex-shrink: 0;
+    
+    /* Pure Glassmorphism with Golden Accents */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(230, 191, 110, 0.2);
+    border-top: 1px solid rgba(230, 191, 110, 0.4);
+    border-left: 1px solid rgba(230, 191, 110, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(230, 191, 110, 0.05);
+    border-radius: 24px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+}
+
+.marquee-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(230, 191, 110, 0.15);
+}
+
+.marquee-card h3 {
+    font: 400 clamp(16px, 2vw, 22px)/1.2 'Italiana', serif;
+    color: #fff;
+    margin: 0;
     letter-spacing: 3px;
     text-shadow: 0 4px 10px rgba(0,0,0,0.5);
     pointer-events: none;
@@ -1287,4 +1482,211 @@ body.partners-page-body .main-header {
 @keyframes scroll-marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-25%); } /* With 4x duplication, -25% shifts it exactly one full set */
+}
+
+/* Mobile Navigation Overlay & Hamburger */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    pointer-events: auto;
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+.hamburger-line {
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transition: transform 0.3s, opacity 0.3s;
+    border-radius: 2px;
+}
+.hamburger-menu[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger-menu[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-menu[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+    pointer-events: none;
+}
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+.mobile-nav-link {
+    font-family: 'Italiana', serif;
+    font-size: 32px;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s;
+}
+.mobile-nav-link:hover {
+    color: #e8c374;
+}
+.mobile-menu-overlay.active .mobile-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+.mobile-menu-overlay.active .mobile-nav-link:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu-overlay.active .mobile-nav-link:nth-child(2) { transition-delay: 0.2s; }
+.mobile-menu-overlay.active .mobile-nav-link:nth-child(3) { transition-delay: 0.3s; }
+
+@media (max-width: 767px) {
+    .hamburger-menu {
+        display: flex;
+    }
+    .header-right {
+        gap: 16px;
+    }
+    .header-actions {
+        transform: scale(0.85);
+        transform-origin: right center;
+    }
+    .main-header {
+        align-items: flex-start !important;
+    }
+    
+    /* Grids collapse to 1 column */
+    .discipline-list,
+    .process-list {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    
+    /* Ensure lightbox is full screen width on mobile */
+    .lightbox-content-wrapper {
+        width: 90vw !important;
+        height: auto !important;
+        aspect-ratio: 3 / 4;
+    }
+    
+    /* Adjust marquee */
+    .marquee-card h3 {
+        font-size: 16px !important;
+    }
+    
+    /* Footer bottom links */
+    .footer-bottom {
+        flex-direction: column !important;
+        gap: 20px !important;
+        align-items: center !important;
+    }
+}
+
+/* Hide animated horizontal line on header */
+.main-header:after {
+    display: none !important;
+}
+
+/* Hide borders between sections */
+.home-section, .agency-tagline-banner {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+/* Show standard header nav on mobile in one row */
+@media (max-width: 767px) {
+    .main-header {
+        flex-direction: row;
+        gap: 8px;
+        justify-content: space-between;
+        align-items: center !important;
+        padding: 16px 12px !important;
+        width: 100%;
+    }
+    
+    .brand {
+        font-size: 22px !important;
+        line-height: 1 !important;
+        display: flex;
+        align-items: center;
+    }
+    
+    .header-nav {
+        display: flex !important;
+        position: relative !important;
+        left: 0 !important;
+        transform: none !important;
+        gap: 12px !important;
+        margin: 0;
+        align-items: center !important;
+    }
+    
+    .home-nav-link {
+        font-size: 10px !important;
+        letter-spacing: 0.5px !important;
+        line-height: 1 !important;
+    }
+
+    .contact-btn {
+        padding: 8px 10px !important;
+        font-size: 8px !important;
+        letter-spacing: 0 !important;
+        gap: 4px !important;
+        line-height: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .contact-btn .arrow {
+        font-size: 10px !important;
+    }
+
+    /* PERFORMANCE FIX: Disable heavy film grain SVG on mobile which causes severe lag on resize */
+    body:after {
+        display: none !important;
+        animation: none !important;
+        background-image: none !important;
+    }
+}
+
+/* Make all cinematic slide titles slightly smaller and fluidly responsive */
+.slide-title {
+    font-size: clamp(24px, 4.2vw, 54px) !important;
+}
+
+@media (max-width: 767px) {
+    .slide-title {
+        font-size: clamp(24px, 9vw, 40px) !important;
+    }
 }
