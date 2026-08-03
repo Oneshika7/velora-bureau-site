@@ -91,6 +91,7 @@ body.gallery-is-open {
 /* Header Actions - Two Buttons */
 .header-actions {
   display: flex;
+  flex-direction: column;
   gap: 12px;
   align-items: center;
 }
