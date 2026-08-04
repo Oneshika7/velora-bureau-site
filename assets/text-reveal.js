@@ -103,59 +103,74 @@ function initTextReveal() {
   let hoverCurrentX = 0;
   let hoverCurrentY = 0;
 
+  // Use Intersection Observer for robust, smooth reveal instead of glitchy scroll-bound opacity
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -15% 0px', // Trigger when element is 15% from bottom of viewport
+    threshold: 0.1
+  };
+
+  const textObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        
+        // Animate Characters in Headings
+        if (element.querySelector('.reveal-char')) {
+          const chars = element.querySelectorAll('.reveal-char:not(.reveal-space)');
+          chars.forEach((char, idx) => {
+            setTimeout(() => {
+              char.style.transition = 'transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease-out';
+              char.style.transform = 'translate(0px, 0px)';
+              char.style.opacity = '1';
+            }, idx * 15); // Stagger by 15ms
+          });
+        }
+        
+        // Animate Words in Paragraphs
+        if (element.querySelector('.reveal-word')) {
+          const words = element.querySelectorAll('.reveal-word');
+          words.forEach((word, idx) => {
+            setTimeout(() => {
+              word.style.transition = 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease-out';
+              word.style.transform = 'translateY(0px)';
+              word.style.opacity = '1';
+            }, idx * 40); // Stagger by 40ms
+          });
+        }
+        
+        observer.unobserve(element); // Only animate once
+      }
+    });
+  }, observerOptions);
+
+  // Initial state and observe headings
+  headingElements.forEach(element => {
+    const chars = element.querySelectorAll('.reveal-char:not(.reveal-space)');
+    chars.forEach(char => {
+      const dist = parseFloat(char.style.getPropertyValue('--center-dist'));
+      char.style.transform = `translate(${dist * 8}px, 20px)`;
+      char.style.opacity = '0';
+    });
+    textObserver.observe(element);
+  });
+
+  // Initial state and observe paragraphs
+  paragraphElements.forEach(element => {
+    const words = element.querySelectorAll('.reveal-word');
+    words.forEach(word => {
+      word.style.transform = 'translateY(15px)';
+      word.style.opacity = '0';
+    });
+    textObserver.observe(element);
+  });
+
+
   const updateAnimations = () => {
     // Lerp the scroll value
     currentScrollY += (targetScrollY - currentScrollY) * lerpFactor;
     
     const viewportHeight = window.innerHeight;
-    const triggerHeight = viewportHeight * 0.95;
-
-    // Animate Characters in Headings (Scatter-Gather)
-    headingElements.forEach(element => {
-      // Calculate position relative to document
-      const docTop = element.getBoundingClientRect().top + window.scrollY;
-      // Calculate relative top in smooth scroll coordinates
-      const smoothTop = docTop - currentScrollY;
-      
-      const progress = Math.max(0, Math.min(1, (triggerHeight - smoothTop) / (viewportHeight * 0.45)));
-
-      const chars = element.querySelectorAll('.reveal-char:not(.reveal-space)');
-      chars.forEach(char => {
-        const dist = parseFloat(char.style.getPropertyValue('--center-dist'));
-        const ease = 1 - Math.pow(1 - progress, 3); // Cubic Ease Out
-        const factor = 1 - ease;
-        
-        const xOffset = factor * dist * 14; 
-        const rotateXVal = factor * dist * 10; 
-        const opacity = 0.25 + (ease * 0.75);
-
-        char.style.transform = `translateX(${xOffset}px) rotateX(${rotateXVal}deg) translateZ(${factor * -50}px)`;
-        char.style.opacity = opacity;
-      });
-    });
-
-    // Animate Words in Paragraphs
-    paragraphElements.forEach(element => {
-      const docTop = element.getBoundingClientRect().top + window.scrollY;
-      const smoothTop = docTop - currentScrollY;
-      
-      const progress = Math.max(0, Math.min(1, (triggerHeight - smoothTop) / (viewportHeight * 0.4)));
-
-      const words = element.querySelectorAll('.reveal-word');
-      const totalWords = words.length;
-
-      words.forEach((word, index) => {
-        const threshold = index / totalWords;
-        if (progress > threshold) {
-          const wordProgress = Math.min(1, (progress - threshold) * totalWords * 1.8);
-          word.style.opacity = 0.25 + (wordProgress * 0.75);
-          word.style.transform = `translateY(${6 * (1 - wordProgress)}px)`;
-        } else {
-          word.style.opacity = 0.25;
-          word.style.transform = `translateY(6px)`;
-        }
-      });
-    });
 
     // 3D Video Parallax
     if (introSection && video3d) {

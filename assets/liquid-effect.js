@@ -374,9 +374,13 @@ void main () {
             const t = e.targetTouches[0];
             updatePointerPosition(t.clientX, t.clientY);
         };
+        let resizeTimeout;
         const onResize = () => {
-            resizeCanvas();
-            initFBOs();
+            if (resizeTimeout) clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                resizeCanvas();
+                initFBOs();
+            }, 100);
         };
 
         window.addEventListener("mouseenter", onEnter);
@@ -394,13 +398,13 @@ void main () {
         canvasElement.height = Math.max(2, Math.round(height * overscanFactor * dpr));
         const cssW = width * overscanFactor;
         const cssH = height * overscanFactor;
-        canvasElement.style.width = \`\${cssW}px\`;
-        canvasElement.style.height = \`\${cssH}px\`;
+        canvasElement.style.width = `${cssW}px`;
+        canvasElement.style.height = `${cssH}px`;
         
         // Centering the oversized canvas
-        canvasElement.style.position = 'absolute';
-        canvasElement.style.left = \`-\${(cssW - width) / 2}px\`;
-        canvasElement.style.top = \`-\${(cssH - height) / 2}px\`;
+        canvasElement.style.position = 'fixed';
+        canvasElement.style.left = `-${(cssW - width) / 2}px`;
+        canvasElement.style.top = `-${(cssH - height) / 2}px`;
 
         const ratio = cssW / cssH;
         const baseResolution = 128 + ((resolution - 1) * (512 - 128)) / 9;
