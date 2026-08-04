@@ -81,6 +81,19 @@ body.gallery-is-open {
   cursor: grabbing !important;
 }
 
+/* Keep the inactive lightbox from intercepting orbit gestures on small screens. */
+#lightbox:not(.active) .lightbox-content-wrapper {
+  pointer-events: none;
+}
+
+#lightbox.active .lightbox-content-wrapper {
+  pointer-events: auto;
+}
+#gallery-section .lightbox-close {
+  top: calc(env(safe-area-inset-top, 0px) + 112px) !important;
+  right: clamp(16px, 2.2vw, 32px) !important;
+}
+
 #home-content {
   position: relative;
   z-index: 50;
