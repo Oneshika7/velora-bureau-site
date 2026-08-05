@@ -1,6 +1,163 @@
+:root {
+    --ease-primary: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-small: ease-out;
+    --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+    --dur-btn: 160ms;
+    --dur-accordion: 280ms;
+    --dur-section: 600ms;
+    --dur-drawer: 450ms;
+    --dur-hero: 700ms;
+}
+
+/* Base button interaction overrides */
+.contact-btn, .home-command, .secondary-btn, .primary-btn, .hero-cta {
+    transition: transform var(--dur-btn) var(--ease-small), box-shadow var(--dur-btn) var(--ease-small), background-color var(--dur-btn) var(--ease-small), color var(--dur-btn) var(--ease-small) !important;
+}
+
+.contact-btn:hover, .contact-btn:focus-visible,
+.home-command:hover, .home-command:focus-visible,
+.hero-cta:hover, .hero-cta:focus-visible {
+    transform: translateY(-2px) !important;
+}
+
+.contact-btn .arrow, .home-command span, .hero-cta .arrow {
+    display: inline-block;
+    transition: transform var(--dur-btn) var(--ease-small) !important;
+}
+
+.contact-btn:hover .arrow, .contact-btn:focus-visible .arrow,
+.home-command:hover span, .home-command:focus-visible span,
+.hero-cta:hover .arrow, .hero-cta:focus-visible .arrow {
+    transform: translateX(4px) !important;
+}
+
 /* Keeps the cinematic story and its gallery as separate visual states. */
 html {
   scroll-behavior: smooth;
+}
+
+/* Base styles for the hero story slides */
+.hero-eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #e8c374;
+    margin-bottom: 16px;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.hero-title {
+    font-family: 'Italiana', serif;
+    font-size: clamp(30px, 5vw, 70px);
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #f4e6bf;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+
+.hero-title-line-wrapper {
+    overflow: hidden;
+    display: block;
+}
+
+.hero-title-line {
+    display: block;
+    transform: translateY(105%);
+    will-change: transform;
+}
+
+.hero-desc {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    line-height: 1.9;
+    font-weight: 400;
+    color: #f9eed3db;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    max-width: 480px;
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+.slide-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+    opacity: 0;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 30px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.primary-cta {
+    background: linear-gradient(135deg, #fff, #f2dfaa 58%, #fff);
+    color: #000;
+    box-shadow: 0 8px 26px #e9c06c24;
+}
+
+.secondary-cta {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+.hero-proof-strip {
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 60px;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+/* Transitions for hero elements */
+.hero-eyebrow, .hero-title-line, .hero-desc, .slide-actions, .hero-proof-strip {
+    transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active State for Hero Elements */
+.slide.active .hero-eyebrow {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide.active .hero-title-line {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide.active .hero-desc {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 200ms;
+}
+
+.slide.active .slide-actions {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 300ms;
+}
+
+.slide.active .hero-proof-strip {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 400ms;
 }
 
 body {

@@ -289,7 +289,7 @@ function initTextReveal() {
     });
   }
 
-  const tick = () => {
+    const tick = () => {
     currentRotX += (targetRotX - currentRotX) * 0.1;
     currentRotY += (targetRotY - currentRotY) * 0.1;
     
@@ -308,6 +308,66 @@ function initTextReveal() {
     requestAnimationFrame(tick);
   };
   tick();
+  
+  initHeroReveal();
+}
+
+function initHeroReveal() {
+    function splitIntoLines(element) {
+        const words = element.innerText.split(' ');
+        element.innerHTML = '';
+        const wordSpans = words.map(word => {
+            const span = document.createElement('span');
+            span.innerText = word + ' ';
+            element.appendChild(span);
+            return span;
+        });
+
+        let currentLineY = -1;
+        let lines = [];
+        let currentLine = [];
+
+        wordSpans.forEach(span => {
+            const top = span.offsetTop;
+            if (currentLineY === -1 || top !== currentLineY) {
+                currentLineY = top;
+                if (currentLine.length > 0) lines.push(currentLine);
+                currentLine = [];
+            }
+            currentLine.push(span);
+        });
+        if (currentLine.length > 0) lines.push(currentLine);
+
+        element.innerHTML = '';
+        lines.forEach((lineWords, index) => {
+            const wrapper = document.createElement('span');
+            wrapper.className = 'hero-title-line-wrapper';
+            
+            const line = document.createElement('span');
+            line.className = 'hero-title-line';
+            line.style.transitionDelay = `${100 + (index * 70)}ms`;
+            
+            lineWords.forEach(span => line.appendChild(span));
+            wrapper.appendChild(line);
+            element.appendChild(wrapper);
+            element.appendChild(document.createTextNode(' '));
+        });
+    }
+
+    document.querySelectorAll('.slide').forEach((slide) => {
+        const title = slide.querySelector('.hero-title');
+        if (title && !title.classList.contains('split-done')) {
+            splitIntoLines(title);
+            title.classList.add('split-done');
+            
+            window.addEventListener('resize', () => {
+                title.classList.remove('split-done');
+                title.innerHTML = title.innerText;
+                splitIntoLines(title);
+                title.classList.add('split-done');
+            });
+        }
+    });
 }
 
 if (document.readyState === 'loading') {
