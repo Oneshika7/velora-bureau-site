@@ -50,7 +50,7 @@ html {
 
 .hero-title {
     font-family: 'Italiana', serif;
-    font-size: clamp(30px, 5vw, 70px);
+    font-size: clamp(28px, 4.2vw, 64px);
     line-height: 1.1;
     font-weight: 400;
     letter-spacing: 1px;
@@ -2005,3 +2005,5 @@ html, body {
         display: none !important;
     }
 }
+@ m e d i a   ( m a x - w i d t h :   7 6 7 p x )   {   . h e r o - t i t l e   {   f o n t - s i z e :   c l a m p ( 2 4 p x ,   1 0 v w ,   4 2 p x ) ;   }   . h e r o - d e s c   {   f o n t - s i z e :   1 0 p x ;   l i n e - h e i g h t :   1 . 7 ;   }   }  
+ 
